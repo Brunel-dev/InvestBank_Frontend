@@ -98,7 +98,7 @@ const AuthView: React.FC<AuthViewProps> = ({ mode, setUser }) => {
                 placeholder="Ex: +237 690 12 34 56"
                 value={loginPhone}
                 onChange={(e) => setLoginPhone(e.target.value)}
-                className="pl-12 text-white bg-slate-800 border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500"
+                className="pl-12"
                 required
               />
             </div>
@@ -115,7 +115,7 @@ const AuthView: React.FC<AuthViewProps> = ({ mode, setUser }) => {
                   placeholder="Votre nom"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="pl-12 text-white bg-slate-800 border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500"
+                  className="pl-12"
                 />
               </div>
             </div>
@@ -131,7 +131,7 @@ const AuthView: React.FC<AuthViewProps> = ({ mode, setUser }) => {
                 placeholder="Votre mot de passe"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="pl-12 text-white bg-slate-800 border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500"
+                className="pl-12"
                 required
               />
             </div>
@@ -150,7 +150,7 @@ const AuthView: React.FC<AuthViewProps> = ({ mode, setUser }) => {
                   placeholder="Confirmez votre mot de passe"
                   value={passwordConfirmation}
                   onChange={(e) => setPasswordConfirmation(e.target.value)}
-                  className="pl-12 text-white bg-slate-800 border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500"
+                  className="pl-12"
                   required
                 />
               </div>

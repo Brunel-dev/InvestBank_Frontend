@@ -1,6 +1,6 @@
 // src/components/auth/RegisterView.tsx
 import React, { useState } from 'react';
-import { ArrowDownLeft, TrendingUp, Phone, Lock, User as UserIcon } from 'lucide-react';
+import { ArrowDownLeft, Phone, Lock, User as UserIcon, Mail } from 'lucide-react';
 import { User } from '../types';
 import { Card, Input, Button } from './ui';
 import api from '../services/api';
@@ -13,6 +13,7 @@ interface RegisterViewProps {
 const RegisterView: React.FC<RegisterViewProps> = ({ setUser }) => {
   const [phone, setPhone] = useState('');
   const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
@@ -25,6 +26,7 @@ const RegisterView: React.FC<RegisterViewProps> = ({ setUser }) => {
       const { data } = await api.post('/register', {
         phone,
         name: name || undefined,
+        email,
         password,
         password_confirmation: passwordConfirmation,
       });
@@ -37,7 +39,7 @@ const RegisterView: React.FC<RegisterViewProps> = ({ setUser }) => {
       });
 
       setUser(meResponse.data);
-      navigate('/myAccount');
+      navigate('/app/dashboard');
     } catch (err: any) {
       alert(
         err.response?.data?.message ||
@@ -62,8 +64,8 @@ const RegisterView: React.FC<RegisterViewProps> = ({ setUser }) => {
 
       <Card className="w-full max-w-md relative z-10 border-t-4 border-t-blue-500">
         <div className="text-center mb-8">
-          <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg shadow-blue-500/50">
-            <TrendingUp className="text-white w-8 h-8" />
+          <div className="flex items-center justify-center mx-auto mb-4">
+            <img src="/logo.png" alt="NovaTrust" className="w-16 h-16" />
           </div>
           <h1 className="text-3xl font-bold text-white mb-2">Inscription</h1>
           <p className="text-slate-400">
@@ -83,9 +85,27 @@ const RegisterView: React.FC<RegisterViewProps> = ({ setUser }) => {
                 placeholder="Votre nom"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="pl-12 text-white bg-slate-800 border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500"
+                className="pl-12"
               />
             </div>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-slate-300 mb-2">
+              Adresse email
+            </label>
+            <div className="relative">
+              <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5" />
+              <Input
+                type="email"
+                placeholder="vous@exemple.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="pl-12"
+                required
+              />
+            </div>
+            {/* <p className="text-xs text-slate-500 mt-1">Utilisée pour les notifications importantes (prêts, subventions, scalping).</p> */}
           </div>
 
           <div>
@@ -99,7 +119,7 @@ const RegisterView: React.FC<RegisterViewProps> = ({ setUser }) => {
                 placeholder="Ex: +237 690 12 34 56"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                className="pl-12 text-white bg-slate-800 border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500"
+                className="pl-12"
                 required
               />
             </div>
@@ -116,7 +136,7 @@ const RegisterView: React.FC<RegisterViewProps> = ({ setUser }) => {
                 placeholder="Votre mot de passe"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="pl-12 text-white bg-slate-800 border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500"
+                className="pl-12"
                 required
               />
             </div>
@@ -133,7 +153,7 @@ const RegisterView: React.FC<RegisterViewProps> = ({ setUser }) => {
                 placeholder="Confirmez votre mot de passe"
                 value={passwordConfirmation}
                 onChange={(e) => setPasswordConfirmation(e.target.value)}
-                className="pl-12 text-white bg-slate-800 border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500"
+                className="pl-12"
                 required
               />
             </div>

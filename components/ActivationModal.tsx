@@ -25,7 +25,7 @@ const ActivationModal: React.FC<ActivationModalProps> = ({
         </div>
         <h3 className="text-xl font-bold text-white">Compte Non Activé</h3>
         <p className="text-slate-300 text-sm mt-2">
-          Pour effectuer des retraits, votre compte InvestBank doit être activé pour des raisons de sécurité.
+          Pour effectuer des retraits, votre compte NovaTrust doit être activé pour des raisons de sécurité.
         </p>
       </div>
 

@@ -1,6 +1,6 @@
 // src/components/auth/LoginView.tsx
 import React, { useState } from 'react';
-import { ArrowDownLeft, TrendingUp, Phone, Lock } from 'lucide-react';
+import { ArrowDownLeft, Phone, Lock } from 'lucide-react';
 import { User } from '../types';
 import { Card, Input, Button } from './ui';
 import api from '../services/api';
@@ -29,7 +29,11 @@ const LoginView: React.FC<LoginViewProps> = ({ setUser }) => {
       });
 
       setUser(meResponse.data);
-      navigate('/myAccount');
+      if (meResponse.data?.role === 'admin') {
+        navigate('/admin');
+      } else {
+        navigate('/app/dashboard');
+      }
     } catch (err: any) {
       alert(
         err.response?.data?.message ||
@@ -54,8 +58,8 @@ const LoginView: React.FC<LoginViewProps> = ({ setUser }) => {
 
       <Card className="w-full max-w-md relative z-10 border-t-4 border-t-blue-500">
         <div className="text-center mb-8">
-          <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg shadow-blue-500/50">
-            <TrendingUp className="text-white w-8 h-8" />
+          <div className="flex items-center justify-center mx-auto mb-4">
+            <img src="/logo.png" alt="NovaTrust" className="w-16 h-16" />
           </div>
           <h1 className="text-3xl font-bold text-white mb-2">Connexion</h1>
           <p className="text-slate-400">Accédez à votre tableau de bord</p>
@@ -73,7 +77,7 @@ const LoginView: React.FC<LoginViewProps> = ({ setUser }) => {
                 placeholder="Ex: +237 690 12 34 56"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                className="pl-12 text-white bg-slate-800 border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500"
+                className="pl-12"
                 required
               />
             </div>
@@ -90,7 +94,7 @@ const LoginView: React.FC<LoginViewProps> = ({ setUser }) => {
                 placeholder="Votre mot de passe"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="pl-12 text-white bg-slate-800 border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500"
+                className="pl-12"
                 required
               />
             </div>

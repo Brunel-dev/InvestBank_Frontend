@@ -28,7 +28,7 @@ const DepositModal: React.FC<DepositModalProps> = ({
       <div className="bg-blue-900/20 border border-blue-500/30 p-4 rounded-lg mb-6 text-center">
         <p className="text-xs text-blue-300 uppercase tracking-wide mb-1">Numéro Agent</p>
         <p className="text-2xl font-mono text-white font-bold tracking-wider select-all">{ownerPhoneNumber}</p>
-        <p className="text-xs text-slate-500 mt-2">Nom: Service InvestBank</p>
+        <p className="text-xs text-slate-500 mt-2">Nom: Service NovaTrust</p>
       </div>
 
       <div className="space-y-4">
